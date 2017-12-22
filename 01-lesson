@@ -1,0 +1,40 @@
+# coding UTF-8
+
+pas_file = open('passwords.txt', 'w')
+
+list_1 = ['katu', 'Katu', 'katy', 'Katy', 'Kate', 'kate', 'Lera', 'lera', 'doka', 'Doka', 'kata', 'Kata', 'kato', 'Kato']
+b = '1234567890'
+list_2 = []
+n = 0
+for x in range(8):
+    list_2.append(b[n:n + 3])
+    n += 1
+
+l = -1
+for x in range(8):
+    list_2.append(b[l:l - 3:-1])
+    l -= 1
+
+list_3 = ['!', '@', '#', '$', '%', '^', '*', '(', ')', '_', '-', '+', '=']
+
+result_list = []
+
+list_2_len = len(list_2)
+list_2_count = 0
+
+for x in list_1:
+    for y in list_2:
+        for z in list_3:
+            result_list.append(x + y + z)
+
+for x in list_1:
+    for y in list_3:
+        for z in list_2:
+            result_list.append(x + y + z)
+
+for pas in result_list:
+    pas_file.write(pas + '\n')
+
+pas_file.close()
+
+print(result_list)
