@@ -10,3 +10,32 @@
 #  если скажем эти файлы потом придется передавать.
 # Так же при выводе имя должно быть полностью в верхнем регистре!
 # Подумайте вспоминая урок, как это можно сделать максимально кратко, используя возможности языка Python.
+
+# Vasya Petya Dasha Dima Lena Katya Vladislav
+# 13000 14000 10000 9000 8000 18000 500000000
+
+salary = open('salary.txt', 'w')
+
+names = list(input('Введите имена через пробел: ').split())
+salaries = list(input('Введите зарплаты через пробел: ').split())
+
+list_of_dict = dict(zip(names, salaries))
+
+for x in list_of_dict.keys():
+    salary.write('{} - {}\n'.format(x, list_of_dict[x]))
+
+salary.close()
+
+salary = open('salary.txt', 'r')
+
+base = []
+for x in salary:
+    base.append(tuple(x[:-1].split(' - ')))
+
+data = dict(base)
+
+for x in data.keys():
+    if int(data[x]) > 500000:
+        pass
+    else:
+        print('{} - {}'.format(x.upper(), int(data[x]) * 0.87))
