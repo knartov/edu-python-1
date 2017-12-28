@@ -5,9 +5,28 @@
 # email - не должен иметь заглавных букв и должен быть в формате: текст в нижнем регистре, допускается нижнее подчеркивание и цифры, потом @, потом текст, допускаются цифры, точка, ru или org или com.
 # Например:
 # Пупкин василий - неверно указано имя, te$T@test.net - неверно указан email (спецсимвол, заглавная буква, .net), te_4_st@test.com - верно указан.
+import re
 
 name, surname, email = input('Введите Имя, Фамилию и адрес e-mail через пробел: ').split()
 print(name, surname, email)
+pattern_name = '[A-Z][a-z]+'
+pattern_name_rus = '[А-Я][а-я]+'
+pattern_email = '[a-z0-9_]+@[a-z0-9]+\.(com|org|ru)'
+
+if re.match(pattern_name, name) or re.match(pattern_name_rus, name):
+    print('{} - имя указано верно'.format(name))
+else:
+    print('{} - имя указано неверно'.format(name))
+
+if re.match(pattern_name, surname) or re.match(pattern_name_rus, surname):
+    print('{} - фамилия указана верно'.format(surname))
+else:
+    print('{} - фамилия указана неверно'.format(surname))
+
+if re.match(pattern_email, email):
+    print('{} - e-mail указан верно'.format(email))
+else:
+    print('{} - e-mail указан неверно'.format(email))
 
 # Задача - 2:
 # Вам дан текст:
