@@ -5,10 +5,13 @@
 # email - не должен иметь заглавных букв и должен быть в формате: текст в нижнем регистре, допускается нижнее подчеркивание и цифры, потом @, потом текст, допускаются цифры, точка, ru или org или com.
 # Например:
 # Пупкин василий - неверно указано имя, te$T@test.net - неверно указан email (спецсимвол, заглавная буква, .net), te_4_st@test.com - верно указан.
+
+# Решение 1
+
 import re
 
 name, surname, email = input('Введите Имя, Фамилию и адрес e-mail через пробел: ').split()
-print(name, surname, email)
+
 pattern_name = '[A-Z][a-z]+'
 pattern_name_rus = '[А-Я][а-я]+'
 pattern_email = '[a-z0-9_]+@[a-z0-9]+\.(com|org|ru)'
@@ -27,6 +30,26 @@ if re.match(pattern_email, email):
     print('{} - e-mail указан верно'.format(email))
 else:
     print('{} - e-mail указан неверно'.format(email))
+
+
+# Решение 2
+
+def proverka(pattern, stroka):
+    if re.match(pattern, stroka):
+        print('{} - ввод данных без ошибок'.format(stroka))
+    else:
+        print('{} - ошибка при вводе'.format(stroka))
+
+
+name, surname, email = input('Введите Имя, Фамилию и адрес e-mail латинницей через пробел: ').split()
+
+pattern_name = '[A-Z][a-z]+'
+pattern_name_rus = '[А-Я][а-я]+'
+pattern_email = '[a-z0-9_]+@[a-z0-9]+\.(com|org|ru)'
+
+proverka(pattern_name, name)
+proverka(pattern_name, surname)
+proverka(pattern_email, email)
 
 # Задача - 2:
 # Вам дан текст:
@@ -62,7 +85,6 @@ some_str = '''
 И навестим поля пустые,
 Леса, недавно столь густые,
 И берег, милый для меня.'''
-
 
 # Необходимо с помощью регулярных выражений определить есть ли в тексте подряд
 # более одной точки, при любом исходе сообщите результат пользователю!
