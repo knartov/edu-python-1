@@ -31,9 +31,6 @@ print(common_list)
 # + Элемент не кратен 4
 
 
-
 initial_list = map(lambda x: int(x), list(input('Введите числа через пробел: ').split()))
 final_list = [elem for elem in initial_list if elem >= 0 and elem % 3 == 0 and elem % 4 != 0]
 print(final_list)
-
-
