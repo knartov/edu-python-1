@@ -20,6 +20,11 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO' \
        'XiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQoiQ' \
        'zTYwZAiRwycdlHfyHNGmkNqSwXUrxGc'
 
+for x in line:
+    if x == x.upper():
+        print(x)
+    else:
+        pass
 
 
 
