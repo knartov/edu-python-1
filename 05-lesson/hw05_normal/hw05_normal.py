@@ -11,7 +11,9 @@
 # "Невозможно создать/удалить/перейти"
 
 import os
-from easy import dir_list
+import sys
+
+from easy import dir_list, chng_dir, del_dir, mk_dir
 
 
 def main():
@@ -22,8 +24,7 @@ def main():
     while answer != 'q':
         answer = input("Давайте поработаем? (Y/N/q)")
         if answer == 'Y':
-            print("Отлично, хозяин!")
-            print("Я умею:")
+            print("Выберите номер действия: ")
             print(" [1] - Перейти в папку")
             print(" [2] - Просмотреть содержимое текущей папки")
             print(" [3] - Удалить папку")
@@ -32,20 +33,34 @@ def main():
             do = int(input("Укажите номер действия: "))
 
             if do == 1:
-                print(os.listdir())
+                dir_name_req1 = str(input('В какую папку перейти?'))
+                try:
+                    chng_dir(dir_name_req1)
+                    print('Успешно перешел')
+                except:
+                    print('Не удалось перейти')
 
             elif do == 2:
-                print()
+                print(dir_list())
 
             elif do == 3:
-                print(psutil.pids())
+                dir_name_req2 = str(input('Какую папку удалить?'))
+                try:
+                    del_dir(dir_name_req2)
+                    print('Успешно удалил')
+                except OSError:
+                    print('Папка {} не пустая, папка не удалена'.format(dir_name_req2))
 
             elif do == 4:
-                print("=Дублирование файлов в текущей директории=")
-                duble_files('.')
+                dir_name_req3 = str(input('Какую папку создать?'))
+                try:
+                    mk_dir(dir_name_req3)
+                    print('Успешно создал')
+                except FileExistsError:
+                    print('Папка {} уже существует, папка не создана'.format(dir_name_req3))
 
             else:
-                pass
+                print('Выберите номер 1, 2, 3 или 4')
 
         elif answer == 'N':
             print("До свидания!")
@@ -56,7 +71,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,
