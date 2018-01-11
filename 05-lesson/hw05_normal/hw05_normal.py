@@ -10,9 +10,6 @@
 # и выводит результат действия: "Успешно создано/удалено/перешел",
 # "Невозможно создать/удалить/перейти"
 
-import os
-import sys
-
 from easy import dir_list, chng_dir, del_dir, mk_dir
 
 
@@ -49,7 +46,7 @@ def main():
                     del_dir(dir_name_req2)
                     print('Успешно удалил')
                 except OSError:
-                    print('Папка {} не пустая, папка не удалена'.format(dir_name_req2))
+                    print('Папка {} не пустая или не существует, папка не удалена'.format(dir_name_req2))
 
             elif do == 4:
                 dir_name_req3 = str(input('Какую папку создать?'))
